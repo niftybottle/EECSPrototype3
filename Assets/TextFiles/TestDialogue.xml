@@ -1,0 +1,37 @@
+<XML>
+<DOb name="Start"><DText>This is a test of the emergency dialogue system</DText>
+<DOp GoTo="Panic"><DResp>OhGodOhGodOhGod</DResp>
+<Com Obj="ScriptObject" Fn="hitHealth2" Par="10" ParType="i"/>
+<Com Obj="ScriptObject" Fn="hitHealth1" Par="10" ParType="f"/>
+</DOp>
+<DOp GoTo="Calm"><DResp>Uh, okay?</DResp>
+<Com Obj="ScriptObject" Fn="hitHealth2" Par="-10" ParType="i"/>
+</DOp>
+<DOp GoTo="Panic"><DResp>This is dumb. I'm dying.</DResp>
+<Com Obj="DeathObject" Fn="setDead" Par="true" ParType="b"/>
+</DOp>
+</DOb>
+<DOb name="Panic"><DText>Calm down, man</DText>
+<DOp GoTo="Panic"><DResp>OhGodOhGodOhGod</DResp>
+<Com Obj="ScriptObject" Fn="hitHealth2" Par="10" ParType="i"/>
+</DOp>
+<DOp GoTo="Calm"><DResp>Okay, I can do that</DResp>
+<Com Obj="ScriptObject" Fn="hitHealth2" Par="-10" ParType="i"/>
+</DOp>
+<DOp GoTo="Panic"><DResp>This is dumb. I'm dying.</DResp>
+<Com Obj="DeathObject" Fn="setDead" Par="false" ParType="b"/>
+</DOp>
+</DOb>
+<DOb name="Calm"><DText>Yeah, no big deal. Just thought you should know</DText>
+<DOp GoTo="Panic"><DResp>Wait, is this a trap?</DResp>
+<Com Obj="ScriptObject" Fn="hitHealth2" Par="10" ParType="i"/>
+</DOp>
+<DOp GoTo="Calm"><DResp>Good to know</DResp>
+<Com Obj="ScriptObject" Fn="hitHealth2" Par="-10" ParType="i"/>
+</DOp>
+<DOp><DResp>Whatever</DResp>
+</DOp>
+</DOb>
+</XML>
+
+
