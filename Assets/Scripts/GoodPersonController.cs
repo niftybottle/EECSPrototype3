@@ -12,28 +12,35 @@ public class GoodPersonController : MonoBehaviour {
 	public float dist;
 	public GameObject controller;
 	public DialogueHelper dh;
+	public SceneControlScript scs;
 	// Use this for initialization
 	void Start () {
 		pc = GameObject.Find("Character").GetComponent("PlayerController") as PlayerController;
+		controller = GameObject.Find ("SceneControl");
+		dh = (DialogueHelper)controller.GetComponent(typeof(DialogueHelper));
+		scs = (SceneControlScript)controller.GetComponent(typeof(SceneControlScript));
 		x = transform.position.x;
 		y = transform.position.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		dist = Mathf.Abs(pc.x - x) + Mathf.Abs(pc.y - y);
-		if(!talking && dist<10){
-			talking = true;
-			//c = controller.AddComponent("DialogueHelper");
-			dh = (DialogueHelper)controller.GetComponent(typeof(DialogueHelper));
-			dh.parseDialogueTree(ta.text);
-			dh.start = true;
+		if(!talking){
+			dist = Mathf.Abs(pc.x - x) + Mathf.Abs(pc.y - y);
+			if(dist<10){
+				talking = true;
+				scs.SetConvo(true);
+				dh.parseDialogueTree(ta.text);
+				dh.start = true;
+			}
+		}else if(scs.despawnTrigger){
+			despawn();
 		}
 	}
 	void despawn() {
-		//DestroyObject(c);
 		dh.Restart();
-		talking = false;
-		//DestroyObject(gameObject);
+		scs.SetDespawn(false);
+		scs.SetConvo(false);
+		DestroyObject(gameObject);
 	}
 }

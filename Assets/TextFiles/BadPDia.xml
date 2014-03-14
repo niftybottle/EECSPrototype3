@@ -2,7 +2,7 @@
 <DOb name="Start"><DText>You suck</DText>
 <DOp GoTo="Panic"><DResp>:(</DResp>
 <Com Obj="SceneControl" Fn="hitHealth2" Par="10" ParType="i"/>
-<Com Obj="BadPerson" Fn="despawn"/>
+<Com Obj="SceneControl" Fn="SetDespawn" Par="true" ParType="b"/>
 </DOp>
 </DOb>
 </XML>
